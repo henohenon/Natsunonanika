@@ -1,0 +1,89 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Common.uss" />
+    <Style src="project://database/Assets/UI%20Toolkit/GameScreen.uss" />
+    
+    <ui:VisualElement name="GameScreen" class="screen-root game-screen">
+        <!-- HUD: タイマーとスコア -->
+        <ui:VisualElement name="HUD" class="hud">
+            <ui:VisualElement name="TimerContainer" class="hud-item">
+                <ui:Label text="残り時間" name="TimerLabel" class="hud-label" />
+                <ui:Label text="60" name="TimerValue" class="hud-value timer-value" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ScoreContainer" class="hud-item">
+                <ui:Label text="スコア" name="ScoreLabel" class="hud-label" />
+                <ui:Label text="0" name="ScoreValue" class="hud-value score-value" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- ゲームエリア -->
+        <ui:VisualElement name="GameArea" class="game-area">
+            <!-- 削りフェーズ -->
+            <ui:VisualElement name="ShavingPhase" class="game-phase shaving-phase">
+                <ui:Label text="ケズれ！" name="ShavingText" class="phase-text shaving-text" />
+                <ui:Button text="デコる！" name="DecoButton" class="common-button phase-button deco-button" />
+            </ui:VisualElement>
+            
+            <!-- デコるフェーズ -->
+            <ui:VisualElement name="DecoratingPhase" class="game-phase decorating-phase">
+                <ui:Label text="デコれ！" name="DecoratingText" class="phase-text decorating-text" />
+                <ui:Button text="完成！" name="CompleteButton" class="common-button phase-button complete-button" />
+            </ui:VisualElement>
+            
+            <!-- 完成フェーズ -->
+            <ui:VisualElement name="CompletionPhase" class="game-phase completion-phase">
+                <!-- 選択ポップアップ -->
+                <ui:VisualElement name="SelectionPopup" class="selection-popup">
+                    <!-- 背景 -->
+                    <ui:VisualElement name="PopupBackground" class="popup-background">
+                        <!-- エラべ！のテキスト -->
+                        <ui:Label text="エラべ！" name="SelectText" class="phase-text select-text" />
+                        
+                        <!-- デコアイコングリッド -->
+                        <ui:VisualElement name="DecoGrid" class="deco-grid">
+                            <!-- 基本デコ -->
+                            <ui:Button name="DecoOption1" class="deco-option deco-basic">
+                                <ui:VisualElement name="DecoIcon1" class="deco-option-icon basic-deco-icon" />
+                                <ui:Label text="キラキラ" name="DecoLabel1" class="deco-option-label" />
+                            </ui:Button>
+                            <ui:Button name="DecoOption2" class="deco-option deco-basic">
+                                <ui:VisualElement name="DecoIcon2" class="deco-option-icon basic-deco-icon" />
+                                <ui:Label text="ハート" name="DecoLabel2" class="deco-option-label" />
+                            </ui:Button>
+                            <ui:Button name="DecoOption3" class="deco-option deco-basic">
+                                <ui:VisualElement name="DecoIcon3" class="deco-option-icon basic-deco-icon" />
+                                <ui:Label text="スター" name="DecoLabel3" class="deco-option-label" />
+                            </ui:Button>
+                            
+                            <!-- 特殊デコ -->
+                            <ui:Button name="DecoOption4" class="deco-option deco-special">
+                                <ui:VisualElement name="DecoIcon4" class="deco-option-icon special-deco-icon" />
+                                <ui:Label text="レインボー" name="DecoLabel4" class="deco-option-label" />
+                            </ui:Button>
+                            <ui:Button name="DecoOption5" class="deco-option deco-special">
+                                <ui:VisualElement name="DecoIcon5" class="deco-option-icon special-deco-icon" />
+                                <ui:Label text="エレクトリック" name="DecoLabel5" class="deco-option-label" />
+                            </ui:Button>
+                            
+                            <!-- レアデコ -->
+                            <ui:Button name="DecoOption6" class="deco-option deco-rare">
+                                <ui:VisualElement name="DecoIcon6" class="deco-option-icon rare-deco-icon" />
+                                <ui:Label text="ゴールド" name="DecoLabel6" class="deco-option-label rare-label" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        
+                        <!-- 選択肢内のボタン -->
+                        <ui:VisualElement name="PopupButtons" class="popup-buttons">
+                            <ui:Button text="キャンセル" name="CancelButton" class="common-button popup-cancel-button" />
+                            <ui:Button text="決定" name="ConfirmButton" class="common-button popup-confirm-button" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- ゲーム中のワークエリア（3Dオブジェクト表示用） -->
+        <ui:VisualElement name="WorkArea" class="work-area">
+            <ui:Label text="作業エリア" name="WorkAreaLabel" class="work-area-label" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,81 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Common.uss" />
+    <Style src="project://database/Assets/UI%20Toolkit/ScoreScreen.uss" />
+    
+    <ui:VisualElement name="ScoreScreen" class="screen-root score-screen">
+        <!-- シューリョー -->
+        <ui:Label text="シューリョー" name="GameOverText" class="title-text game-over-text" />
+        
+        <!-- スコア表示 -->
+        <ui:VisualElement name="ScoreDisplay" class="score-display panel">
+            <ui:Label text="最終スコア" name="ScoreLabel" class="score-label" />
+            <ui:Label text="12,345" name="FinalScoreValue" class="score-text final-score-value" />
+        </ui:VisualElement>
+        
+        <!-- コンテンツエリア -->
+        <ui:VisualElement name="ContentArea" class="content-area">
+            <!-- 保有デコリスト -->
+            <ui:VisualElement name="DecoCollection" class="deco-collection panel">
+                <ui:Label text="保有デコリスト" name="CollectionLabel" class="section-label" />
+                <ui:ScrollView name="CollectionContent" class="collection-content">
+                    <!-- 獲得したデコアイテム -->
+                    <ui:VisualElement name="CollectedItem1" class="list-item collection-item">
+                        <ui:VisualElement name="CollectedIcon1" class="icon collected-icon basic-collected" />
+                        <ui:VisualElement class="item-info">
+                            <ui:Label text="キラキラ" name="CollectedName1" class="item-name" />
+                            <ui:Label text="獲得済み" name="CollectedStatus1" class="item-status collected-status" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CollectedItem2" class="list-item collection-item">
+                        <ui:VisualElement name="CollectedIcon2" class="icon collected-icon special-collected" />
+                        <ui:VisualElement class="item-info">
+                            <ui:Label text="レインボー" name="CollectedName2" class="item-name" />
+                            <ui:Label text="獲得済み" name="CollectedStatus2" class="item-status collected-status" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CollectedItem3" class="list-item collection-item">
+                        <ui:VisualElement name="CollectedIcon3" class="icon collected-icon rare-collected" />
+                        <ui:VisualElement class="item-info">
+                            <ui:Label text="ゴールド" name="CollectedName3" class="item-name rare-name" />
+                            <ui:Label text="獲得済み" name="CollectedStatus3" class="item-status collected-status" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <!-- 未獲得アイテム -->
+                    <ui:VisualElement name="LockedItem1" class="list-item collection-item locked-item">
+                        <ui:VisualElement name="LockedIcon1" class="icon locked-icon" />
+                        <ui:VisualElement class="item-info">
+                            <ui:Label text="？？？" name="LockedName1" class="item-name locked-name" />
+                            <ui:Label text="未獲得" name="LockedStatus1" class="item-status locked-status" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            
+            <!-- ランキング登録エリア -->
+            <ui:VisualElement name="RankingArea" class="ranking-area panel">
+                <ui:Label text="ランキング登録" name="RankingLabel" class="section-label" />
+                
+                <!-- ニックネーム入力 -->
+                <ui:VisualElement name="NicknameInput" class="nickname-input-container">
+                    <ui:Label text="ニックネーム" name="NicknameLabel" class="input-label" />
+                    <ui:TextField placeholder-text="名前を入力してください" name="NicknameField" class="input-field nickname-field" />
+                </ui:VisualElement>
+                
+                <!-- ランキング登録ボタン -->
+                <ui:Button text="トウコウ" name="RegisterButton" class="common-button register-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- ボタンエリア -->
+        <ui:VisualElement name="ButtonArea" class="button-area">
+            <!-- シェアボタン -->
+            <ui:VisualElement name="ShareSection" class="share-section">
+                <ui:Label text="シェア" name="ShareLabel" class="section-label" />
+                <ui:Button text="Xに投稿" name="ShareButton" class="common-button share-button" />
+            </ui:VisualElement>
+            
+            <!-- タイトルへ戻るボタン -->
+            <ui:Button text="タイトルへ" name="TitleButton" class="common-button title-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

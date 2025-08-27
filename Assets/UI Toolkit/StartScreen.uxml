@@ -1,0 +1,88 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Common.uss" />
+    <Style src="project://database/Assets/UI%20Toolkit/StartScreen.uss" />
+    
+    <ui:VisualElement name="StartScreen" class="screen-root">
+        <!-- タイトル -->
+        <ui:Label text="ナツノナニカ" name="GameTitle" class="title-text game-title" />
+        
+        <!-- メインメニュー -->
+        <ui:VisualElement name="MainMenu" class="main-menu">
+            <!-- スタートボタン -->
+            <ui:Button text="スタート" name="StartButton" class="common-button start-button" />
+            
+            <!-- 色選択 -->
+            <ui:VisualElement name="ColorSelection" class="color-selection panel">
+                <ui:Label text="色選択" name="ColorSelectionLabel" class="section-label" />
+                <ui:VisualElement name="ColorPalette" class="color-palette">
+                    <ui:Button name="Color1" class="color-button color-red" />
+                    <ui:Button name="Color2" class="color-button color-blue" />
+                    <ui:Button name="Color3" class="color-button color-green" />
+                    <ui:Button name="Color4" class="color-button color-yellow" />
+                    <ui:Button name="Color5" class="color-button color-purple" />
+                    <ui:Button name="Color6" class="color-button color-orange" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            
+            <!-- 図鑑 -->
+            <ui:VisualElement name="Encyclopedia" class="encyclopedia panel">
+                <ui:Label text="図鑑" name="EncyclopediaLabel" class="section-label" />
+                <ui:ScrollView name="EncyclopediaContent" class="encyclopedia-content">
+                    <!-- カテゴリ1: 基本デコ -->
+                    <ui:Foldout text="基本デコ" name="BasicDecoCategory" class="category-foldout">
+                        <ui:VisualElement name="BasicDecoItem1" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="DecoIcon1" class="icon deco-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="キラキラ" name="ItemName1" class="item-name" />
+                                <ui:Label text="光る効果を追加" name="ItemEffect1" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BasicDecoItem2" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="DecoIcon2" class="icon deco-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="ハート" name="ItemName2" class="item-name" />
+                                <ui:Label text="可愛い装飾" name="ItemEffect2" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BasicDecoItem3" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="DecoIcon3" class="icon deco-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="スター" name="ItemName3" class="item-name" />
+                                <ui:Label text="星の輝きを追加" name="ItemEffect3" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                    
+                    <!-- カテゴリ2: 特殊デコ -->
+                    <ui:Foldout text="特殊デコ" name="SpecialDecoCategory" class="category-foldout">
+                        <ui:VisualElement name="SpecialDecoItem1" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="SpecialIcon1" class="icon deco-icon special-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="レインボー" name="SpecialName1" class="item-name" />
+                                <ui:Label text="虹色の特殊効果" name="SpecialEffect1" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="SpecialDecoItem2" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="SpecialIcon2" class="icon deco-icon special-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="エレクトリック" name="SpecialName2" class="item-name" />
+                                <ui:Label text="電気の効果" name="SpecialEffect2" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                    
+                    <!-- カテゴリ3: レアデコ -->
+                    <ui:Foldout text="レアデコ" name="RareDecoCategory" class="category-foldout">
+                        <ui:VisualElement name="RareDecoItem1" class="list-item encyclopedia-item">
+                            <ui:VisualElement name="RareIcon1" class="icon deco-icon rare-icon" />
+                            <ui:VisualElement class="item-info">
+                                <ui:Label text="ゴールド" name="RareName1" class="item-name rare-name" />
+                                <ui:Label text="金色の豪華な効果" name="RareEffect1" class="item-effect" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

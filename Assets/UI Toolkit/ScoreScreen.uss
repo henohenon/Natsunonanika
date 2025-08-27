@@ -1,0 +1,234 @@
+﻿/* スコアスクリーン専用スタイル - Score Screen Styles */
+
+/* スコアスクリーンのルート */
+.score-screen {
+    background-color: rgba(30, 40, 60, 1);
+}
+
+/* シューリョーテキスト */
+.game-over-text {
+    font-size: 72px;
+    color: rgba(255, 150, 100, 1);
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    -unity-text-align: middle-center;
+}
+
+/* スコア表示 */
+.score-display {
+    margin-bottom: 30px;
+    padding: 20px 40px;
+    background-color: rgba(20, 30, 50, 0.95);
+    border-color: rgba(255, 200, 100, 0.8);
+    border-width: 3px;
+}
+
+.score-label {
+    font-size: 24px;
+    color: rgba(200, 200, 255, 1);
+    margin-bottom: 10px;
+    -unity-text-align: middle-center;
+}
+
+.final-score-value {
+    font-size: 48px;
+    color: rgba(255, 220, 100, 1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* コンテンツエリア */
+.content-area {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+}
+
+/* 保有デコリスト */
+.deco-collection {
+    width: 45%;
+    margin-right: 20px;
+    max-height: 300px;
+}
+
+.collection-content {
+    max-height: 250px;
+}
+
+.collection-item {
+    margin: 6px 0;
+    padding: 10px;
+    transition-duration: 0.2s;
+}
+
+.collection-item:hover {
+    background-color: rgba(70, 70, 110, 0.9);
+}
+
+/* 獲得済みアイテム */
+.collected-icon {
+    border-width: 2px;
+    border-radius: 6px;
+}
+
+.basic-collected {
+    background-color: rgba(150, 150, 200, 1);
+    border-color: rgba(100, 100, 150, 1);
+}
+
+.special-collected {
+    background-color: rgba(200, 150, 255, 1);
+    border-color: rgba(150, 100, 200, 1);
+}
+
+.rare-collected {
+    background-color: rgba(255, 215, 100, 1);
+    border-color: rgba(200, 165, 50, 1);
+}
+
+.collected-status {
+    color: rgba(100, 255, 150, 1);
+    font-size: 12px;
+    -unity-font-style: bold;
+}
+
+/* 未獲得（ロック）アイテム */
+.locked-item {
+    opacity: 0.6;
+}
+
+.locked-icon {
+    background-color: rgba(80, 80, 100, 1);
+    border-color: rgba(60, 60, 80, 1);
+    border-width: 2px;
+    border-radius: 6px;
+}
+
+.locked-name {
+    color: rgba(120, 120, 140, 1);
+}
+
+.locked-status {
+    color: rgba(150, 100, 100, 1);
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* ランキングエリア */
+.ranking-area {
+    width: 45%;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.nickname-input-container {
+    width: 100%;
+    margin: 15px 0;
+    align-items: center;
+}
+
+.input-label {
+    font-size: 18px;
+    color: rgba(200, 200, 255, 1);
+    margin-bottom: 8px;
+    -unity-text-align: middle-center;
+}
+
+.nickname-field {
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+.register-button {
+    background-color: rgba(100, 200, 255, 1);
+    border-color: rgba(50, 150, 200, 1);
+    color: rgba(20, 80, 120, 1);
+    width: 180px;
+}
+
+.register-button:hover {
+    background-color: rgba(120, 220, 255, 1);
+    border-color: rgba(70, 170, 220, 1);
+}
+
+/* ボタンエリア */
+.button-area {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.share-section {
+    margin-right: 40px;
+    align-items: center;
+}
+
+.share-button {
+    background-color: rgba(100, 150, 255, 1);
+    border-color: rgba(50, 100, 200, 1);
+    color: rgba(255, 255, 255, 1);
+    width: 160px;
+    margin-top: 10px;
+}
+
+.share-button:hover {
+    background-color: rgba(120, 170, 255, 1);
+    border-color: rgba(70, 120, 220, 1);
+}
+
+.title-button {
+    background-color: rgba(200, 100, 100, 1);
+    border-color: rgba(150, 50, 50, 1);
+    color: rgba(255, 255, 255, 1);
+    width: 180px;
+    margin-left: 40px;
+}
+
+.title-button:hover {
+    background-color: rgba(220, 120, 120, 1);
+    border-color: rgba(170, 70, 70, 1);
+}
+
+/* セクションラベル（スコア画面用） */
+.score-screen .section-label {
+    font-size: 22px;
+    color: rgba(220, 220, 255, 1);
+    margin-bottom: 15px;
+    -unity-text-align: middle-center;
+}
+
+/* 項目ステータス */
+.item-status {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 800px) {
+    .content-area {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .deco-collection,
+    .ranking-area {
+        width: 80%;
+        margin: 10px 0;
+    }
+    
+    .button-area {
+        flex-direction: column;
+    }
+    
+    .share-section {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .title-button {
+        margin-left: 0;
+    }
+}

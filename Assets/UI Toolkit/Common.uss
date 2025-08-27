@@ -1,0 +1,109 @@
+﻿/* 共通スタイル - Common Styles */
+
+/* 基本レイアウト */
+.screen-root {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(50, 50, 80, 1);
+}
+
+/* ボタン共通スタイル */
+.common-button {
+    width: 200px;
+    height: 60px;
+    border-radius: 15px;
+    background-color: rgba(255, 200, 100, 1);
+    border-width: 3px;
+    border-color: rgba(200, 150, 50, 1);
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgba(80, 50, 20, 1);
+    margin: 10px;
+    transition-duration: 0.2s;
+    cursor: link;
+}
+
+.common-button:hover {
+    background-color: rgba(255, 220, 120, 1);
+    border-color: rgba(220, 170, 70, 1);
+    scale: 1.05 1.05;
+}
+
+.common-button:active {
+    scale: 0.95 0.95;
+}
+
+/* テキスト共通スタイル */
+.title-text {
+    font-size: 48px;
+    -unity-font-style: bold;
+    color: rgba(255, 255, 255, 1);
+    margin: 20px;
+    -unity-text-align: middle-center;
+}
+
+.phase-text {
+    font-size: 36px;
+    -unity-font-style: bold;
+    color: rgba(255, 255, 100, 1);
+    margin: 15px;
+    -unity-text-align: middle-center;
+}
+
+.score-text {
+    font-size: 32px;
+    -unity-font-style: bold;
+    color: rgba(255, 255, 255, 1);
+    margin: 10px;
+    -unity-text-align: middle-center;
+}
+
+/* パネル共通スタイル */
+.panel {
+    background-color: rgba(30, 30, 50, 0.9);
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: rgba(100, 100, 150, 1);
+    padding: 20px;
+    margin: 10px;
+}
+
+/* リスト項目 */
+.list-item {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    margin: 4px;
+    background-color: rgba(60, 60, 90, 0.8);
+    border-radius: 5px;
+}
+
+.list-item:hover {
+    background-color: rgba(80, 80, 110, 0.9);
+}
+
+/* アイコン */
+.icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    background-color: rgba(150, 150, 200, 1);
+    border-radius: 4px;
+}
+
+/* 入力フィールド */
+.input-field {
+    width: 300px;
+    height: 40px;
+    padding: 8px;
+    margin: 10px;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: rgba(100, 100, 150, 1);
+    background-color: rgba(255, 255, 255, 1);
+    font-size: 18px;
+}

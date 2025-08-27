@@ -1,0 +1,185 @@
+﻿/* スタートスクリーン専用スタイル - Start Screen Styles */
+
+/* ゲームタイトル */
+.game-title {
+    font-size: 64px;
+    color: rgba(255, 220, 100, 1);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* メインメニュー */
+.main-menu {
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* スタートボタン */
+.start-button {
+    width: 300px;
+    height: 80px;
+    font-size: 32px;
+    margin-bottom: 30px;
+    background-color: rgba(255, 100, 100, 1);
+    border-color: rgba(200, 50, 50, 1);
+}
+
+.start-button:hover {
+    background-color: rgba(255, 120, 120, 1);
+    border-color: rgba(220, 70, 70, 1);
+}
+
+/* セクションラベル */
+.section-label {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgba(200, 200, 255, 1);
+    margin-bottom: 15px;
+    -unity-text-align: middle-center;
+}
+
+/* 色選択セクション */
+.color-selection {
+    width: 100%;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.color-palette {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.color-button {
+    width: 60px;
+    height: 60px;
+    margin: 8px;
+    border-radius: 30px;
+    border-width: 4px;
+    transition-duration: 0.3s;
+    cursor: link;
+}
+
+.color-button:hover {
+    scale: 1.2 1.2;
+    border-width: 6px;
+}
+
+.color-button:active {
+    scale: 1.1 1.1;
+}
+
+/* 各色の定義 */
+.color-red {
+    background-color: rgba(255, 100, 100, 1);
+    border-color: rgba(200, 50, 50, 1);
+}
+
+.color-blue {
+    background-color: rgba(100, 150, 255, 1);
+    border-color: rgba(50, 100, 200, 1);
+}
+
+.color-green {
+    background-color: rgba(100, 255, 100, 1);
+    border-color: rgba(50, 200, 50, 1);
+}
+
+.color-yellow {
+    background-color: rgba(255, 255, 100, 1);
+    border-color: rgba(200, 200, 50, 1);
+}
+
+.color-purple {
+    background-color: rgba(200, 100, 255, 1);
+    border-color: rgba(150, 50, 200, 1);
+}
+
+.color-orange {
+    background-color: rgba(255, 150, 100, 1);
+    border-color: rgba(200, 100, 50, 1);
+}
+
+/* 図鑑セクション */
+.encyclopedia {
+    width: 100%;
+    max-height: 400px;
+    margin: 20px 0;
+}
+
+.encyclopedia-content {
+    max-height: 350px;
+}
+
+.category-foldout {
+    margin: 10px 0;
+    background-color: rgba(40, 40, 70, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.category-foldout > .unity-foldout__toggle {
+    background-color: rgba(60, 60, 100, 0.9);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.category-foldout > .unity-foldout__toggle:hover {
+    background-color: rgba(80, 80, 120, 0.9);
+}
+
+/* 図鑑アイテム */
+.encyclopedia-item {
+    margin: 8px 0;
+    padding: 12px;
+    background-color: rgba(50, 50, 80, 0.9);
+}
+
+.item-info {
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.item-name {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgba(220, 220, 255, 1);
+    margin-bottom: 4px;
+}
+
+.item-effect {
+    font-size: 14px;
+    color: rgba(180, 180, 200, 1);
+    font-style: italic;
+}
+
+/* デコアイコン */
+.deco-icon {
+    background-color: rgba(150, 150, 200, 1);
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: rgba(100, 100, 150, 1);
+}
+
+.special-icon {
+    background-color: rgba(200, 150, 255, 1);
+    border-color: rgba(150, 100, 200, 1);
+}
+
+.rare-icon {
+    background-color: rgba(255, 215, 100, 1);
+    border-color: rgba(200, 165, 50, 1);
+}
+
+/* レア名前の特別スタイル */
+.rare-name {
+    color: rgba(255, 215, 100, 1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}

@@ -1,0 +1,295 @@
+﻿/* ゲームスクリーン専用スタイル - Game Screen Styles */
+
+/* ゲームスクリーンのルート */
+.game-screen {
+    background-color: rgba(40, 60, 80, 1);
+}
+
+/* HUD（タイマーとスコア） */
+.hud {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 100;
+}
+
+.hud-item {
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(20, 30, 50, 0.9);
+    border-radius: 15px;
+    padding: 15px 25px;
+    border-width: 2px;
+    border-color: rgba(100, 150, 200, 0.8);
+}
+
+.hud-label {
+    font-size: 16px;
+    color: rgba(200, 200, 255, 1);
+    margin-bottom: 5px;
+    -unity-text-align: middle-center;
+}
+
+.hud-value {
+    font-size: 28px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.timer-value {
+    color: rgba(255, 200, 100, 1);
+}
+
+.score-value {
+    color: rgba(100, 255, 150, 1);
+}
+
+/* ゲームエリア */
+.game-area {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    right: 20px;
+    bottom: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ゲームフェーズ共通 */
+.game-phase {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.game-phase.active {
+    display: flex;
+}
+
+/* フェーズボタン */
+.phase-button {
+    width: 250px;
+    height: 80px;
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+/* 削りフェーズ */
+.shaving-phase {
+    background-color: rgba(80, 50, 50, 0.3);
+    border-radius: 20px;
+}
+
+.shaving-text {
+    color: rgba(255, 150, 150, 1);
+    font-size: 48px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.deco-button {
+    background-color: rgba(150, 255, 150, 1);
+    border-color: rgba(100, 200, 100, 1);
+    color: rgba(50, 100, 50, 1);
+}
+
+.deco-button:hover {
+    background-color: rgba(170, 255, 170, 1);
+    border-color: rgba(120, 220, 120, 1);
+}
+
+/* デコるフェーズ */
+.decorating-phase {
+    background-color: rgba(50, 80, 50, 0.3);
+    border-radius: 20px;
+}
+
+.decorating-text {
+    color: rgba(150, 255, 150, 1);
+    font-size: 48px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.complete-button {
+    background-color: rgba(255, 200, 100, 1);
+    border-color: rgba(200, 150, 50, 1);
+    color: rgba(100, 75, 25, 1);
+}
+
+.complete-button:hover {
+    background-color: rgba(255, 220, 120, 1);
+    border-color: rgba(220, 170, 70, 1);
+}
+
+/* 完成フェーズ */
+.completion-phase {
+    background-color: rgba(50, 50, 80, 0.3);
+    border-radius: 20px;
+}
+
+/* 選択ポップアップ */
+.selection-popup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.selection-popup.active {
+    display: flex;
+}
+
+.popup-background {
+    width: 600px;
+    height: 500px;
+    background-color: rgba(30, 30, 60, 0.95);
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: rgba(150, 150, 200, 1);
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select-text {
+    color: rgba(255, 255, 150, 1);
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* デコグリッド */
+.deco-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.deco-option {
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    border-radius: 15px;
+    border-width: 3px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.3s;
+    cursor: link;
+    background-color: rgba(60, 60, 100, 0.8);
+}
+
+.deco-option:hover {
+    scale: 1.1 1.1;
+    border-width: 4px;
+    background-color: rgba(80, 80, 120, 0.9);
+}
+
+.deco-option:active {
+    scale: 1.05 1.05;
+}
+
+.deco-option-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.deco-option-label {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgba(220, 220, 255, 1);
+    -unity-text-align: middle-center;
+}
+
+/* デコオプションの種類別スタイル */
+.deco-basic {
+    border-color: rgba(100, 150, 200, 1);
+}
+
+.deco-special {
+    border-color: rgba(200, 100, 255, 1);
+}
+
+.deco-rare {
+    border-color: rgba(255, 200, 100, 1);
+}
+
+.basic-deco-icon {
+    background-color: rgba(150, 150, 200, 1);
+}
+
+.special-deco-icon {
+    background-color: rgba(200, 150, 255, 1);
+}
+
+.rare-deco-icon {
+    background-color: rgba(255, 215, 100, 1);
+}
+
+.rare-label {
+    color: rgba(255, 215, 100, 1);
+}
+
+/* ポップアップボタン */
+.popup-buttons {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.popup-cancel-button {
+    background-color: rgba(150, 150, 150, 1);
+    border-color: rgba(100, 100, 100, 1);
+    margin-right: 20px;
+}
+
+.popup-cancel-button:hover {
+    background-color: rgba(170, 170, 170, 1);
+}
+
+.popup-confirm-button {
+    background-color: rgba(100, 200, 100, 1);
+    border-color: rgba(50, 150, 50, 1);
+    margin-left: 20px;
+}
+
+.popup-confirm-button:hover {
+    background-color: rgba(120, 220, 120, 1);
+}
+
+/* ワークエリア */
+.work-area {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 100px;
+    background-color: rgba(20, 20, 40, 0.8);
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: rgba(100, 100, 150, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.work-area-label {
+    font-size: 18px;
+    color: rgba(150, 150, 200, 1);
+    -unity-text-align: middle-center;
+}
