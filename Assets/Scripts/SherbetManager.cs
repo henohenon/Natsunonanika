@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using Alchemy.Inspector;
 
 [Serializable]
 public class DistributionPattern
@@ -20,26 +21,43 @@ public class SherbetManager: MonoBehaviour
         new DistributionPattern { center = 0.5f, width = 1f, falloff = 1.5f }
     };
 
-    /// <summary>
-    /// 指定されたパターンに従って center ± width の範囲で、
-    /// 距離に falloff 乗を掛けてバイアスサンプリング
-    /// </summary>
-    private float SampleFromPattern(DistributionPattern pattern)
+
+    private float GetRandomPosition(DistributionPattern pattern)
     {
-        // -1 ～ 1 の一様乱数
-        var u = UnityEngine.Random.value * 2f - 1f;
+        // ループ処理による軽量実装
+        float halfWidth = pattern.width / 2;
+        float u, t, probability;
 
-        // 距離を falloff 乗で減衰させる（0 に近いほど値が小さくなる）
-        var d = Mathf.Pow(Mathf.Abs(u), pattern.falloff);
+        // 最大20回までの試行で適切な値を生成
+        for (int i = 0; i < 20; i++)
+        {
+            // 中心付近の値を生成（-0.5～0.5の範囲）
+            u = UnityEngine.Random.value - 0.5f;
 
-        // 符号を戻しつつ幅を掛け中心に足す
-        var offset = Mathf.Sign(u) * d * pattern.width;
-        var normalizedValue = Mathf.Clamp01(pattern.center + offset);  // 0～1 に収める
-        
-        // 0～1 の値を -instanceRange～instanceRange の範囲に変換
-        return (normalizedValue * 2f - 1f) * instanceRange;
+            // 中心からの絶対距離
+            float absoluteU = Mathf.Abs(u);
+
+            // 範囲外ならスキップ
+            if (absoluteU > halfWidth) continue;
+
+            // 中心からの距離に基づく確率
+            probability = Mathf.Pow(1 - (absoluteU / halfWidth), pattern.falloff);
+
+            // 確率に基づいて受理
+            if (UnityEngine.Random.value <= probability)
+            {
+                // 中心位置を考慮した最終位置
+                t = pattern.center + u;
+                // instanceRangeを考慮してスケーリング
+                return (t * 2 - 1) * instanceRange;
+            }
+        }
+
+        // 20回試行しても見つからなかった場合は中心位置を返す
+        return (pattern.center * 2 - 1) * instanceRange;
     }
 
+    [Button]
     public void GenerateSherbet()
     {
         if (sherbetPrefabs == null || sherbetPrefabs.Length == 0) return;
@@ -48,12 +66,18 @@ public class SherbetManager: MonoBehaviour
         // パターンをランダムに1つ選択
         var selectedPattern = distributionPatterns[UnityEngine.Random.Range(0, distributionPatterns.Length)];
 
-        // 選んだパターンでサンプリング
-        var t = SampleFromPattern(selectedPattern);
-        int index = Mathf.Clamp(
-            Mathf.FloorToInt(t * sherbetPrefabs.Length),
-            0, sherbetPrefabs.Length - 1);
+        var t = GetRandomPosition(selectedPattern);
 
-        Instantiate(sherbetPrefabs[index], transform.position, Quaternion.identity, transform);
+        // インデックスを完全にランダムに選択
+        int randomIndex = UnityEngine.Random.Range(0, sherbetPrefabs.Length);
+
+        // 完全にランダムな回転を生成
+        Quaternion randomRotation = Quaternion.Euler(
+            UnityEngine.Random.Range(0f, 360f),
+            UnityEngine.Random.Range(0f, 360f),
+            UnityEngine.Random.Range(0f, 360f)
+        );
+
+        Instantiate(sherbetPrefabs[randomIndex], transform.position + new Vector3(t, 0, 0), randomRotation, transform);
     }
 }
