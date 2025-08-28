@@ -20,10 +20,10 @@ public class MachineController : MonoBehaviour
             if (screw != null)
             {
                 var pos = screw.localPosition;
-                screw.localPosition = new Vector3(pos.x, value * -0.4f, pos.z);
+                screw.localPosition = new Vector3(pos.x, (1 - value) * -0.4f, pos.z);
                 
                 var rot = screw.localRotation.eulerAngles;
-                screw.localRotation = Quaternion.Euler(rot.x, (value * 360 * 5) % 360, rot.z);
+                screw.localRotation = Quaternion.Euler(rot.x, ((1 - value) * 360 * -5) % 360, rot.z);
             }
         }
     }
