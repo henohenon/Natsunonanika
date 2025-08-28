@@ -8,15 +8,19 @@ public class SherveFaseManager : MonoBehaviour
     [SerializeField] private SherbetManager sherbetManager;
     [SerializeField] private Transform handleObj; 
     [SerializeField] private MachineController machineController;
-    [SerializeField] private float maxIce = 1000;
+    [SerializeField] private float maxIce = 100;
     
     private float _currentIce;
     private IDisposable _angleSubscription;
     private float _accumulatedAngle = 0f;
     
+    private readonly ReactiveProperty<bool> _shavedFirst = new ();
+    public ReadOnlyReactiveProperty<bool> ShavedFirst => _shavedFirst;
+    
     void Start()
     {
         _currentIce  = maxIce;
+        _shavedFirst.Value = true;
         // MouseAngleCheckとSherbetManagerの参照を確認
         if (mouseAngleCheck == null)
         {
@@ -38,6 +42,8 @@ public class SherveFaseManager : MonoBehaviour
     
     private void OnAngleChanged(float angleChange)
     {
+        if (!enabled) return;
+        
         handleObj.Rotate(Vector3.right, angleChange);
         // angleChangeの値を累積
         _accumulatedAngle += angleChange;
@@ -58,6 +64,8 @@ public class SherveFaseManager : MonoBehaviour
             _currentIce -= sherbetCount;
 
             machineController.rate = _currentIce / maxIce;
+
+            _shavedFirst.Value = maxIce - _currentIce < 10;
                 
             Debug.Log($"Generated {sherbetCount} sherbet(s). Remaining accumulated angle: {_accumulatedAngle}");
         }
