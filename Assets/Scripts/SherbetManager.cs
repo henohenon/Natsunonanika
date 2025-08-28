@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Alchemy.Inspector;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class DistributionPattern
@@ -13,8 +16,28 @@ public class DistributionPattern
 public class SherbetManager: MonoBehaviour
 {
     [SerializeField] private float instanceRange = 4f;
-    [SerializeField] private GameObject[] sherbetPrefabs;
-
+    [SerializeField] private SherbeController[] sherbetPrefabs;
+    
+    #if UNITY_EDITOR
+    [Button]
+    private void GetAllSherbetPrefabs()
+    {
+        var foundSherbets = new List<SherbeController>();
+        
+        // 現在のシーンから検索
+        var rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (var rootObject in rootObjects)
+        {
+            var sherbetsInHierarchy = rootObject.GetComponentsInChildren<SherbeController>(true);
+            foundSherbets.AddRange(sherbetsInHierarchy);
+        }
+        
+        sherbetPrefabs = foundSherbets.ToArray();
+        
+        // エディタでの変更をマーク
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+    #endif
     [Header("確率分布パターン")]
     [SerializeField] private DistributionPattern[] distributionPatterns = new DistributionPattern[] 
     {
@@ -22,6 +45,11 @@ public class SherbetManager: MonoBehaviour
     };
 
 
+    public void ReStart()
+    {
+        foreach (var sherbet in sherbetPrefabs) sherbet.Disable();
+    }
+    
     private float GetRandomPosition(DistributionPattern pattern)
     {
         // ループ処理による軽量実装
@@ -60,24 +88,31 @@ public class SherbetManager: MonoBehaviour
     [Button]
     public void GenerateSherbet()
     {
-        if (sherbetPrefabs == null || sherbetPrefabs.Length == 0) return;
-        if (distributionPatterns == null || distributionPatterns.Length == 0) return;
+        // LINQ魔法でワンライナー✨
+        var selectedSherbet = sherbetPrefabs?
+            .Where(sherbet => sherbet != null && !sherbet.IsActive.CurrentValue)
+            .OrderBy(_ => UnityEngine.Random.value)
+            .FirstOrDefault();
 
-        // パターンをランダムに1つ選択
-        var selectedPattern = distributionPatterns[UnityEngine.Random.Range(0, distributionPatterns.Length)];
+        if (selectedSherbet == null)
+        {
+            Debug.Log("アクティブにできるシャーベットがありません");
+            return;
+        }
 
-        var t = GetRandomPosition(selectedPattern);
+        // パターンとポジションもLINQで選択
+        var selectedPattern = distributionPatterns
+            .OrderBy(_ => UnityEngine.Random.value)
+            .FirstOrDefault();
 
-        // インデックスを完全にランダムに選択
-        int randomIndex = UnityEngine.Random.Range(0, sherbetPrefabs.Length);
+        var position = transform.position + new Vector3(GetRandomPosition(selectedPattern), 0, 0);
 
-        // 完全にランダムな回転を生成
-        Quaternion randomRotation = Quaternion.Euler(
-            UnityEngine.Random.Range(0f, 360f),
-            UnityEngine.Random.Range(0f, 360f),
-            UnityEngine.Random.Range(0f, 360f)
-        );
-
-        Instantiate(sherbetPrefabs[randomIndex], transform.position + new Vector3(t, 0, 0), randomRotation, transform);
+        // アクティブ化とポジション設定
+        selectedSherbet.Activate(position);
+    }
+    
+    public int GetCurrentActiveSherbetCount()
+    {
+        return sherbetPrefabs.Count(sherbet => sherbet.IsActive.CurrentValue);
     }
 }

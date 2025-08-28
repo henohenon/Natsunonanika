@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DefaultNamespace;
+using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 using R3;
@@ -7,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameUIController : MonoBehaviour
 {
+    [SerializeField] private AudioSource _successSound;
+    [SerializeField] private AudioSource _limitSound;
     [SerializeField] private SherveFaseManager _sherveFaseManager;
     
     [SerializeField] private TMPro.TMP_Text bigText;
@@ -33,6 +36,17 @@ public class GameUIController : MonoBehaviour
         resultContainer.SetActive(false);
         resultBackground.gameObject.SetActive(false);
 
+        LMotion.Create(30f, 0f, 30).WithOnComplete(() =>
+        {
+            _limitSound.Play();
+            _sherveFaseManager.enabled = false;
+            resultBackground.gameObject.SetActive(true);
+            resultContainer.Popup();
+        }).Bind(x =>
+        {
+            timeText.text = x.ToString("0.0");
+        });
+
         _sherveFaseManager.ShavedFirst.Subscribe(isFirst =>
         {
             Debug.Log($"SherveFaseManager.ShavedFirst is {isFirst}");
@@ -42,13 +56,15 @@ public class GameUIController : MonoBehaviour
         
         completeButton.onClick.AddListener(() =>
         {
+            _successSound.Play();
+            AddScore();
+            _sherveFaseManager.ReStart();
             completeContainer.Popout();
-            resultBackground.gameObject.SetActive(true);
-            resultContainer.Popup();
         });
         
-        resultButton.onClick.AddListener(() =>
+        resultButton.onClick.AddListener(async () =>
         {
+            await UniTask.Delay(300);
             SceneManager.LoadScene("Title");
         });
 
@@ -66,5 +82,15 @@ public class GameUIController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private int _score = 0;
+    private void AddScore()
+    {
+        var current = _sherveFaseManager.GetScore();
+        Debug.Log("AddScore"+ current);
+        _score += current;
+        scoreText.text = _score.ToString();
+        resultText.text = _score.ToString();
     }
 }

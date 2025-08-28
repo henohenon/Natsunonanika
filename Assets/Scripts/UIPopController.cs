@@ -45,7 +45,8 @@ namespace DefaultNamespace
 
         public void SetActive(bool active)
         {
-            gameObject.SetActive(active);
+            //gameObject.SetActive(active);
+            _rectTransform.localScale = active ? Vector2.one : Vector2.zero;
             if(_canvasGroup == null) Awake();
             _canvasGroup.blocksRaycasts = active;
         }

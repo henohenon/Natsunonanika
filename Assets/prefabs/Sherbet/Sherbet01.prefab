@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 229417557821451159}
   - component: {fileID: 6836134591820636769}
   - component: {fileID: 313297681118069905}
+  - component: {fileID: 543711228167677377}
   m_Layer: 0
   m_Name: Sherbet01
   m_TagString: Untagged
@@ -183,3 +184,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.15
+--- !u!114 &543711228167677377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076461405839867550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9124b215355d1428c1d7e7041b8c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

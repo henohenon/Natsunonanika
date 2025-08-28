@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SherveFaseManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource _sherveSound;
+
     [SerializeField] private MouseAngleCheck mouseAngleCheck;
     [SerializeField] private SherbetManager sherbetManager;
     [SerializeField] private Transform handleObj; 
@@ -13,14 +15,14 @@ public class SherveFaseManager : MonoBehaviour
     private float _currentIce;
     private IDisposable _angleSubscription;
     private float _accumulatedAngle = 0f;
+    private Vector3 _initRotation;
     
     private readonly ReactiveProperty<bool> _shavedFirst = new ();
     public ReadOnlyReactiveProperty<bool> ShavedFirst => _shavedFirst;
-    
-    void Start()
+
+
+    private void Start()
     {
-        _currentIce  = maxIce;
-        _shavedFirst.Value = true;
         // MouseAngleCheckとSherbetManagerの参照を確認
         if (mouseAngleCheck == null)
         {
@@ -34,10 +36,20 @@ public class SherveFaseManager : MonoBehaviour
             return;
         }
         
+        _initRotation = handleObj.localEulerAngles;
+        
         // MouseAngleCheckのAngleOffsetを購読
         _angleSubscription = mouseAngleCheck.AngleOffset.Subscribe(OnAngleChanged);
-        
-        Debug.Log("SherveFaseManager initialized and subscribed to MouseAngleCheck.AngleOffset");
+
+        ReStart();
+    }
+    public void ReStart()
+    {
+        _currentIce  = maxIce;
+        _shavedFirst.Value = true;
+        machineController.rate = 1;
+        handleObj.eulerAngles = _initRotation;
+        sherbetManager.ReStart();
     }
     
     private void OnAngleChanged(float angleChange)
@@ -53,6 +65,7 @@ public class SherveFaseManager : MonoBehaviour
         
         if (sherbetCount > 0)
         {
+            _sherveSound.Play();
             // sherbetCount回GenerateSherbetを実行
             for (int i = 0; i < sherbetCount; i++)
             {
@@ -75,5 +88,10 @@ public class SherveFaseManager : MonoBehaviour
     {
         // 購読を解除してメモリリークを防ぐ
         _angleSubscription?.Dispose();
+    }
+
+    public int GetScore()
+    {
+        return sherbetManager.GetCurrentActiveSherbetCount();
     }
 }
